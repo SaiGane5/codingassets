@@ -15,7 +15,7 @@ const BlogCards = ({ imageSrc, title, description, link }) => {
         <p className="text-white p-5">{description}</p>
         <a 
           href={link} 
-          className="text-white p-5 hover:text-[#D4AF37] no-underline"
+          className="text-[#D4AF37] p-5 hover:text-[#FFD700] no-underline"
         >
           Read more...
         </a>

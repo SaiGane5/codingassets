@@ -1,6 +1,11 @@
 import React from 'react';
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+  let navigate = useNavigate(); 
+  const registerRoute = () =>{ 
+    let path = "/register"; 
+    navigate(path);
+  }
   return (
     <div className="flex items-center justify-between min-h-screen px-4 md:px-12 pt-24 bg-[#121212] text-[#F5F5F5]">
       <div className="hero-content flex-1 pr-12">
@@ -17,7 +22,7 @@ const Hero = () => {
         <p className="text-xl mb-8">
           Join CodingAssets for skills improvement and professional growth
         </p>
-        <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition">
+        <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition" onClick={registerRoute}>
           Get Started
         </button>
       </div>
