@@ -42,6 +42,12 @@ const ToolSection = () => {
       heading: "Daily Dash",
       description: "Enhance your lifestyle",
       linkHref: "https://daily-dashboard-saig.netlify.app/"
+    },
+    {
+      imageSrc: "https://plus.unsplash.com/premium_photo-1681487870238-4a2dfddc6bcb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8VG8lMjBkbyUyMGxpc3R8ZW58MHx8MHx8fDA%3D",
+      heading: "To Do",
+      description: "Long-term goals assistant",
+      linkHref: "https://iitm-schedule.glitch.me/todos"
     }
   ];
 

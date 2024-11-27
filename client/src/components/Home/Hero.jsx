@@ -23,7 +23,7 @@ const Hero = () => {
       </div>
       <div className="hidden md:block">
         <img 
-          src="https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?w=800&auto=format&fit=crop&q=60"
+          src="https://plus.unsplash.com/premium_vector-1682310664746-f934119dffd6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNvZGluZyUyMGFzc2V0c3xlbnwwfHwwfHx8MA%3D%3D"
           alt="hero" 
           className="max-w-md max-h-[500px] w-full h-auto rounded-3xl object-cover shadow-2xl"
         />

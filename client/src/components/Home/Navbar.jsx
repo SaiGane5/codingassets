@@ -48,7 +48,7 @@ const Navbar = () => {
             backgroundColor: 'var(--primary-color)'
           }}
         >
-          {['Tools', 'Blog', 'Contact'].map((item, index) => (
+          {['Tutorials', 'Tools', 'Blog', 'Contact'].map((item, index) => (
             <li key={index}>
               <a 
                 href={`#${item.toLowerCase()}`} 
