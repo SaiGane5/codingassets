@@ -6,6 +6,10 @@ const Hero = () => {
     let path = "/register"; 
     navigate(path);
   }
+  const aboutRoute = () => {
+    let path = "/about";
+    navigate(path);
+  }
   return (
     <div className="flex items-center justify-between min-h-screen px-4 md:px-12 pt-24 bg-[#121212] text-[#F5F5F5]">
       <div className="hero-content flex-1 pr-12">
@@ -24,6 +28,9 @@ const Hero = () => {
         </p>
         <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition" onClick={registerRoute}>
           Get Started
+        </button>
+        <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition m-5" onClick={aboutRoute}>
+          About Us
         </button>
       </div>
       <div className="hidden md:block">

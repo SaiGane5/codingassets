@@ -10,7 +10,7 @@ const BlogCards = ({ imageSrc, title, description, link }) => {
           className="w-52 h-52 rounded-3xl object-cover"
         />
       </div>
-      <div className="blog-content flex flex-col justify-between p-2.5 w-64">
+      <div className="blog-content flex flex-col justify-between p-2.5 w-fit">
         <h2 className="text-[#FFD700] text-xl font-bold mb-2 p-5">{title}</h2>
         <p className="text-white p-5">{description}</p>
         <a 

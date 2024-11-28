@@ -12,17 +12,17 @@ const ToolCards = ({ imageSrc, heading, description, linkHref }) => {
         />
       </div>
       <div className="card-content flex flex-col justify-center p-2.5 w-64">
-        <h2 className="text-[#FFD700] text-xl font-bold mb-0 pl-5 pt-3">{heading}</h2>
-        <p className="text-white p-5">{description}</p>
-        <div className="flex justify-end p-2.5">
-          <a 
+        <a 
             href={linkHref} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-white hover:text-[#D4AF37]"
           >
-            <ExternalLink size={24} />
+            <h2 className="text-[#FFD700] text-xl font-bold mb-0 pl-5 pt-3">{heading}</h2>
           </a>
+        <p className="text-white p-5">{description}</p>
+        <div className="flex justify-end p-2.5">
+          
         </div>
       </div>
     </div>
