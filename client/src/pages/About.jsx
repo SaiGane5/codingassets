@@ -1,3 +1,4 @@
+import Footer from "../components/Home/Footer"
 const About = () => {
   return (
     <div className="p-5 bg-[#121212]">
@@ -31,6 +32,7 @@ const About = () => {
         </div>
         
       </div>
+      <Footer />
     </div>
   );
 };
