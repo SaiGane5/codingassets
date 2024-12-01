@@ -3,16 +3,10 @@ import {BlogCards} from "../components/Home/BlogSection"
 const Blogs = () => {
   const blogsData = [
     {
-      imageSrc: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
-      title: "Tech with saig",
-      description: "Latest trends in modern technologies",
-      link: "https://techwithsaig.super.site/"
-    },
-    {
       imageSrc: "https://images.unsplash.com/photo-1620228885847-9eab2a1adddc?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800",
       title: "Ways of Intraday",
       description: "Techniques to survive in intraday",
-      link: "https://tech-with-saig.notion.site/The-No-Nonsense-Guide-to-Intraday-Trading-140c5223a971803dbaf9fa4697eff31c"
+      link: "blog/Intraday_Trading.html"
     }
   ];
   return (
