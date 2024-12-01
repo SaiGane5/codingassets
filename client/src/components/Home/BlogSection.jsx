@@ -2,20 +2,22 @@ import React from 'react';
 
 const BlogCards = ({ imageSrc, title, description, link }) => {
   return (
-    <div className="flex bg-[#121212] rounded-3xl m-2.5">
-      <div className="blog-image p-5">
+    <div className="flex flex-col md:flex-row bg-[#121212] rounded-3xl m-4 p-4">
+      <div className="blog-image">
         <img 
           src={imageSrc} 
           alt={title} 
-          className="w-52 h-52 rounded-3xl object-cover"
+          className="w-full md:w-52 h-52 rounded-3xl object-cover"
         />
       </div>
-      <div className="blog-content flex flex-col justify-between p-2.5 w-fit">
-        <h2 className="text-[#FFD700] text-xl font-bold mb-2 p-5">{title}</h2>
-        <p className="text-white p-5">{description}</p>
+      <div className="blog-content flex flex-col justify-between p-4 md:w-3/4">
+        <h2 className="text-[#FFD700] text-lg md:text-xl font-bold mb-2">{title}</h2>
+        <p className="text-white text-sm md:text-base mb-4">{description}</p>
         <a 
           href={link} 
-          className="text-[#D4AF37] p-5 hover:text-[#FFD700] no-underline"
+          className="text-[#D4AF37] text-sm md:text-base hover:text-[#FFD700] no-underline"
+          target="_blank" 
+          rel="noopener noreferrer"
         >
           Read more...
         </a>
@@ -43,12 +45,12 @@ const BlogSection = () => {
   return (
     <section 
       id="blog" 
-      className="bg-[#1d1b1b] rounded-3xl m-12 p-2.5 flex flex-col"
+      className="bg-[#1d1b1b] rounded-3xl m-4 md:m-12 p-4 flex flex-col"
     >
-      <h2 className="text-3xl text-center py-5 text-[#D4AF37] font-bold">
+      <h2 className="text-2xl md:text-3xl text-center py-5 text-[#D4AF37] font-bold">
         Latest Blogs
       </h2>
-      <div className="flex flex-col items-left">
+      <div className="flex flex-col gap-6">
         {blogsData.map((blog, index) => (
           <BlogCards key={index} {...blog} />
         ))}
@@ -58,3 +60,4 @@ const BlogSection = () => {
 };
 
 export default BlogSection;
+export { BlogCards };

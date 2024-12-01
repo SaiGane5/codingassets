@@ -23,11 +23,11 @@ const About = () => {
                 Our Goal
             </h2>
             <p className="text-white">
-              Improve skills of each struggling student
+              To improve skills of each struggling student
             </p>
           </div>
           <div className="flex justify-end">
-            <img src="https://images.ctfassets.net/kftzwdyauwt9/32cmTSUIF5POX5FMuoHJwO/be8b42b8016957ca28e07274f05f1d3d/stangel-2022-0527.webp?w=3840&q=90&fm=webp " className="rounded-r-3xl w-1/2"/>
+            <img src="https://i.pinimg.com/474x/12/0d/47/120d47c11a1d256a0ec99665525f6576.jpg" className="rounded-r-3xl "/>
           </div>
         </div>
         

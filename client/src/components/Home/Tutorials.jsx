@@ -3,18 +3,18 @@ import { ExternalLink } from 'lucide-react';
 
 const TutorialCards = ({ imageSrc, heading, description, linkHref }) => {
   return (
-    <div className="flex flex-col bg-[#121212] rounded-3xl w-fit m-2.5">
+    <div className="flex flex-col bg-[#121212] rounded-3xl w-full md:w-80 m-2.5">
       <div className="card-image">
         <img 
           src={imageSrc} 
           alt={heading} 
-          className="w-72 h-52 rounded-3xl m-5 object-cover"
+          className="w-full h-52 rounded-t-3xl object-cover"
         />
       </div>
-      <div className="card-content flex flex-col justify-center p-2.5">
-        <h2 className="text-[#FFD700] text-xl font-bold mb-0 pl-5 pt-3">{heading}</h2>
-        <p className="text-white p-5">{description}</p>
-        <div className="flex justify-end p-2.5">
+      <div className="card-content flex flex-col justify-center p-4">
+        <h2 className="text-[#FFD700] text-lg md:text-xl font-bold mb-2">{heading}</h2>
+        <p className="text-white text-sm md:text-base mb-4">{description}</p>
+        <div className="flex justify-end">
           <a 
             href={linkHref} 
             target="_blank" 
@@ -54,12 +54,12 @@ const TutorialSection = () => {
   return (
     <section 
       id="tutorials" 
-      className="bg-[#1d1b1b] rounded-3xl m-12 p-2.5 flex flex-col"
+      className="bg-[#1d1b1b] rounded-3xl m-4 md:m-12 p-4 flex flex-col"
     >
-      <h2 className="text-3xl text-center py-5 text-[#D4AF37] font-bold">
+      <h2 className="text-2xl md:text-3xl text-center py-5 text-[#D4AF37] font-bold">
         Our Tutorials
       </h2>
-      <div className="flex flex-wrap justify-evenly">
+      <div className="flex flex-wrap justify-center gap-6">
         {tutorialsData.map((tool, index) => (
           <TutorialCards key={index} {...tool} />
         ))}

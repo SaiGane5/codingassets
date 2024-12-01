@@ -1,0 +1,757 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Animations</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="12cc5223-a971-80bb-b0b7-f43a85f48f10" class="page sans"><header><h1 class="page-title">Animations</h1><p class="page-description"></p></header><div class="page-body"><p id="12cc5223-a971-800a-9e21-ef8b6c3c0aea" class="">Animations in CSS bring interactivity and visual appeal to web pages, allowing elements to transition smoothly, respond to user interactions, or draw attention. With CSS animations, you can control an element’s transition between various states, creating effects such as fades, slides, and rotations. Here’s a breakdown of essential CSS animation techniques and how they’re used in professional settings.</p><hr id="12cc5223-a971-806e-9873-f6b55d56c9d6"/><h3 id="12cc5223-a971-80f3-a148-e75bf10d8fdc" class="">1. <strong>CSS Transitions</strong></h3><p id="12cc5223-a971-8081-accf-ea11982ecf81" class="">CSS transitions create smooth changes from one state to another over a defined duration. They’re ideal for simple animations, like changing color or position on hover.</p><ul id="12cc5223-a971-80cf-bcbf-cc2c3d6c06ec" class="bulleted-list"><li style="list-style-type:disc"><strong>Syntax</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8084-8046-cd676e4d9255" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.button {
+    background-color: #3498db;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+</code></pre></li></ul><ul id="12cc5223-a971-802c-9907-e2b55802b512" class="bulleted-list"><li style="list-style-type:disc"><strong>Properties</strong>:<ul id="12cc5223-a971-808a-8c07-dfc069f8997f" class="bulleted-list"><li style="list-style-type:circle"><code>transition-property</code>: Specifies which property to animate (e.g., <code>background-color</code>, <code>transform</code>).</li></ul><ul id="12cc5223-a971-805e-b14e-fd5d8fbe8daf" class="bulleted-list"><li style="list-style-type:circle"><code>transition-duration</code>: Duration of the transition, in seconds or milliseconds (e.g., <code>0.3s</code>).</li></ul><ul id="12cc5223-a971-809d-a8e1-fa562c1dbcb3" class="bulleted-list"><li style="list-style-type:circle"><code>transition-timing-function</code>: Controls the speed of the transition (<code>ease</code>, <code>linear</code>, <code>ease-in</code>, <code>ease-out</code>, etc.).</li></ul><ul id="12cc5223-a971-80c5-a215-d0e22e0d86fb" class="bulleted-list"><li style="list-style-type:circle"><code>transition-delay</code>: Delay before the transition begins.</li></ul></li></ul><p id="12cc5223-a971-8087-8a75-fec3e79a20c9" class=""><strong>Professional Usage</strong>: CSS transitions are very common (about 90%) for subtle animations, such as button hovers, menu item highlights, and image overlays. They’re ideal for enhancing user interactions without complex setup.</p><hr id="12cc5223-a971-8060-86f4-dc8c709a135e"/><h3 id="12cc5223-a971-8043-9284-f68e495255a4" class="">2. <strong>CSS Keyframes with </strong><code><strong>@keyframes</strong></code></h3><p id="12cc5223-a971-80bd-a169-e870d0ddea51" class="">Keyframes define a series of steps in an animation, allowing you to create complex animations with multiple stages. Each keyframe specifies the style of the element at a given percentage of the animation duration.</p><ul id="12cc5223-a971-8097-8026-e7a4c6683158" class="bulleted-list"><li style="list-style-type:disc"><strong>Syntax</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8087-97c4-f41949f2459e" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fade-in-element {
+    animation: fadeIn 1s ease-in-out;
+}
+</code></pre></li></ul><ul id="12cc5223-a971-80c8-876c-c59c1fa9adb1" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Properties</strong>:<ul id="12cc5223-a971-8027-99b0-c9bcf12e0f82" class="bulleted-list"><li style="list-style-type:circle"><code>@keyframes</code>: Defines the stages of the animation (from 0% to 100%).</li></ul><ul id="12cc5223-a971-8073-8729-f88881198fd9" class="bulleted-list"><li style="list-style-type:circle"><code>animation-name</code>: The name of the keyframe animation (e.g., <code>fadeIn</code>).</li></ul><ul id="12cc5223-a971-8042-95e0-d9b8e6eb65de" class="bulleted-list"><li style="list-style-type:circle"><code>animation-duration</code>: How long the animation takes to complete (e.g., <code>1s</code>).</li></ul><ul id="12cc5223-a971-8073-be40-c81eae1ff8a8" class="bulleted-list"><li style="list-style-type:circle"><code>animation-timing-function</code>: Speed curve (like <code>ease</code>, <code>linear</code>).</li></ul><ul id="12cc5223-a971-804d-a07e-c1b71066534f" class="bulleted-list"><li style="list-style-type:circle"><code>animation-delay</code>: Delay before the animation starts.</li></ul><ul id="12cc5223-a971-8050-bb01-f03c64818be4" class="bulleted-list"><li style="list-style-type:circle"><code>animation-iteration-count</code>: Number of times the animation repeats (e.g., <code>infinite</code>).</li></ul></li></ul><p id="12cc5223-a971-80a3-a268-e7b0134b906c" class=""><strong>Professional Usage</strong>: Keyframes are widely used for more dynamic animations (about 70%), such as loading spinners, fading in modals, image carousels, and notifications. They allow precise control over how an element animates.</p><hr id="12cc5223-a971-808e-ba95-fda19107e529"/><h3 id="12cc5223-a971-8050-b6d5-d4cb188e25a1" class="">3. <strong>Animation Timing Functions</strong></h3><p id="12cc5223-a971-8061-b6a9-fde9b5418e20" class="">The timing function controls the speed of the animation over its duration. Timing functions can make animations look smoother or give a natural feel.</p><ul id="12cc5223-a971-8054-bc5b-df7d2496d387" class="bulleted-list"><li style="list-style-type:disc"><strong>Common Values</strong>:<ul id="12cc5223-a971-80a8-a7ce-c46da118faeb" class="bulleted-list"><li style="list-style-type:circle"><code>ease-in</code>: Slow at the start, then fast.</li></ul><ul id="12cc5223-a971-8029-b241-e6f8ea9f10c4" class="bulleted-list"><li style="list-style-type:circle"><code>ease-out</code>: Fast at the start, then slows down.</li></ul><ul id="12cc5223-a971-8026-95c6-e9d626048758" class="bulleted-list"><li style="list-style-type:circle"><code>ease-in-out</code>: Slow start and end, fast in the middle.</li></ul><ul id="12cc5223-a971-8094-b693-e6e842efd534" class="bulleted-list"><li style="list-style-type:circle"><code>cubic-bezier</code>: Custom timing with control points.</li></ul></li></ul><p id="12cc5223-a971-8090-ac53-fc6902dc0361" class=""><strong>Professional Usage</strong>: Used in around 80% of animations to create smoother effects. <code>ease-in-out</code> is popular for making animations feel natural, while <code>cubic-bezier</code> is used for custom effects, especially in UI animations like slide-ins and pop-ups.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-806c-b628-e053346091d0" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.element {
+    animation: bounce 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+</code></pre><hr id="12cc5223-a971-80ac-b1c5-c886e1558e59"/><h3 id="12cc5223-a971-802e-a8da-fd5ccb181e7f" class="">4. <strong>Animation Fill Modes</strong></h3><p id="12cc5223-a971-80b5-aa78-da78a491b037" class="">The <code>animation-fill-mode</code> property determines what styles are applied to the element before or after the animation.</p><ul id="12cc5223-a971-80d0-b8b1-ec69a98b2db4" class="bulleted-list"><li style="list-style-type:disc"><strong>Values</strong>:<ul id="12cc5223-a971-8080-8fa2-ea0af0cf341b" class="bulleted-list"><li style="list-style-type:circle"><code>none</code>: No styles are retained after the animation.</li></ul><ul id="12cc5223-a971-80ba-91e4-dc375abc1039" class="bulleted-list"><li style="list-style-type:circle"><code>forwards</code>: Keeps the last keyframe style after the animation ends.</li></ul><ul id="12cc5223-a971-8038-b594-c3a128ceb294" class="bulleted-list"><li style="list-style-type:circle"><code>backwards</code>: Applies the first keyframe style before the animation starts.</li></ul><ul id="12cc5223-a971-80cd-8d46-ff6383d0cd76" class="bulleted-list"><li style="list-style-type:circle"><code>both</code>: Applies both <code>forwards</code> and <code>backwards</code> effects.</li></ul></li></ul><p id="12cc5223-a971-8030-8a12-ff8ca34de237" class=""><strong>Professional Usage</strong>: Used in about 50% of animations where the final state of the animation needs to persist, like in drop-down menus, modals, or fade-in/out effects.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80e4-8a3d-f54738f8a648" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.element {
+    animation: fadeIn 2s ease-in-out forwards;
+}
+</code></pre><hr id="12cc5223-a971-8064-b0b4-e912894009c6"/><h3 id="12cc5223-a971-80cd-a95c-c2cccebf6077" class="">5. <strong>Animation Delay and Iteration Count</strong></h3><ul id="12cc5223-a971-8033-94b6-fd656c8c504b" class="bulleted-list"><li style="list-style-type:disc"><code><strong>animation-delay</strong></code>: Delays the start of the animation, allowing it to trigger after other elements.</li></ul><ul id="12cc5223-a971-8041-ba81-dcaa92c2e5b7" class="bulleted-list"><li style="list-style-type:disc"><code><strong>animation-iteration-count</strong></code>: Specifies the number of times an animation should repeat. You can set it to a specific number or <code>infinite</code>.</li></ul><p id="12cc5223-a971-8077-9120-e518b66ba8db" class=""><strong>Professional Usage</strong>: Useful for sequential animations, such as staggering the appearance of elements in a list or having elements continuously animate (e.g., <code>infinite</code> for loading spinners).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80ee-af2a-cf55ba74e54c" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.element {
+    animation: bounce 1s ease-in-out 0.5s infinite;
+}
+</code></pre><hr id="12cc5223-a971-8052-b871-ee263165da19"/><h3 id="12cc5223-a971-80cd-adb5-d201b0023c60" class="">6. <strong>Shorthand Animation Property</strong></h3><p id="12cc5223-a971-808b-bd19-dd2ce2815b2b" class="">The <code>animation</code> shorthand combines all individual animation properties into one line.</p><ul id="12cc5223-a971-806c-b9f8-e45fd6661110" class="bulleted-list"><li style="list-style-type:disc"><strong>Syntax</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80e5-baf3-faec50656b04" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.element {
+    animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+</code></pre><ul id="12cc5223-a971-8011-97df-e0b8b8b4be4e" class="bulleted-list"><li style="list-style-type:circle">Format: <code>animation: name duration timing-function delay iteration-count direction fill-mode;</code></li></ul></li></ul><p id="12cc5223-a971-8043-ba96-df4486fd4508" class=""><strong>Professional Usage</strong>: Used in about 90% of animations, as it simplifies the code and makes it easier to apply multiple animations with one line.</p><hr id="12cc5223-a971-8036-b39e-f63f4bc23ac9"/><h3 id="12cc5223-a971-8056-9311-c367a1e7fee8" class="">7. <strong>Animation Direction</strong></h3><p id="12cc5223-a971-801d-9eb2-da4c5d02335f" class="">The <code>animation-direction</code> property controls whether the animation should play in reverse.</p><ul id="12cc5223-a971-8014-8c38-fc8a0de0c004" class="bulleted-list"><li style="list-style-type:disc"><strong>Values</strong>:<ul id="12cc5223-a971-8010-a065-e2dfafe208b4" class="bulleted-list"><li style="list-style-type:circle"><code>normal</code>: Plays forward.</li></ul><ul id="12cc5223-a971-80f3-b651-c5dd48d41d62" class="bulleted-list"><li style="list-style-type:circle"><code>reverse</code>: Plays backward.</li></ul><ul id="12cc5223-a971-800c-a045-d574dbaf49c3" class="bulleted-list"><li style="list-style-type:circle"><code>alternate</code>: Alternates between forward and backward each cycle.</li></ul><ul id="12cc5223-a971-80cf-ac3e-c4653d9f51fa" class="bulleted-list"><li style="list-style-type:circle"><code>alternate-reverse</code>: Starts in reverse and alternates.</li></ul></li></ul><p id="12cc5223-a971-80c4-8302-d0d9c6aa147a" class=""><strong>Professional Usage</strong>: Alternate directions are used in around 30% of looping animations, such as a back-and-forth bouncing effect.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80cf-bb3b-f11b52bd09d6" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100px); }
+}
+
+.element {
+    animation: slide 1s ease-in-out infinite alternate;
+}
+</code></pre><hr id="12cc5223-a971-8045-9bdf-c0aa93c8525e"/><h3 id="12cc5223-a971-804a-aed4-f7eae61741d4" class="">8. <strong>Transform for Animation Effects</strong></h3><p id="12cc5223-a971-80af-abe8-fad9fb43d43c" class="">Transforms such as <code>translate</code>, <code>rotate</code>, <code>scale</code>, and <code>skew</code> are commonly used with animations to move, resize, or rotate elements.</p><ul id="12cc5223-a971-80ce-aeb4-e577b32c1198" class="bulleted-list"><li style="list-style-type:disc"><strong>Common Usage</strong>:<ul id="12cc5223-a971-8023-9f94-d24e018751f5" class="bulleted-list"><li style="list-style-type:circle"><code>translate</code>: Moves an element along the X or Y axis.</li></ul><ul id="12cc5223-a971-8021-8809-cf217ec3e39a" class="bulleted-list"><li style="list-style-type:circle"><code>rotate</code>: Rotates an element by a specified degree.</li></ul><ul id="12cc5223-a971-80e7-b7f2-d5d55724531a" class="bulleted-list"><li style="list-style-type:circle"><code>scale</code>: Resizes an element.</li></ul><ul id="12cc5223-a971-8086-8044-f3bb44c35b7d" class="bulleted-list"><li style="list-style-type:circle"><code>skew</code>: Tilts an element along the X or Y axis.</li></ul></li></ul><p id="12cc5223-a971-809c-8470-ca18058eac86" class=""><strong>Professional Usage</strong>: Transforms are essential in around 80% of animations, as they allow more visually engaging effects. They’re used frequently in animations for buttons, image galleries, and interactive elements.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8084-aa77-eefd5948638d" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.element {
+    animation: pulse 0.6s ease-in-out infinite;
+}
+</code></pre><hr id="12cc5223-a971-8014-8b52-d632109b64e4"/><h3 id="12cc5223-a971-8018-9d09-f644acba4870" class="">9. <strong>CSS Animations for Responsive Design</strong></h3><p id="12cc5223-a971-80c7-a669-ce1155c83477" class="">You can use media queries to apply or change animations based on screen size. This ensures animations don’t overload smaller devices or slow down user experience on mobile.</p><ul id="12cc5223-a971-800c-9e38-f9b2adcf4ff6" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8018-8638-f678307e750a" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">@media (min-width: 768px) {
+    .element {
+        animation: slideIn 1s ease forwards;
+    }
+}
+</code></pre></li></ul><p id="12cc5223-a971-8052-aa15-d0deea13ca89" class=""><strong>Professional Usage</strong>: In responsive design (used in about 40%), animations may be reduced or simplified on mobile screens to ensure faster load times and better performance.</p><hr id="12cc5223-a971-8040-91b6-c18936e3d3c7"/><h3 id="12cc5223-a971-80e9-8887-fc39a48fc099" class="">Practical Example: Interactive Button</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8081-a063-f34b451b0c59" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">@keyframes buttonHover {
+    0% { transform: scale(1); background-color: #3498db; }
+    50% { transform: scale(1.05); background-color: #2980b9; }
+    100% { transform: scale(1); background-color: #3498db; }
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    animation: buttonHover 0.6s ease;
+}
+</code></pre><p id="12cc5223-a971-8063-967f-e53f49f63dc2" class="">In this example, the button uses a keyframe animation to “pulse” slightly on hover, creating a subtle, interactive effect.</p><hr id="12cc5223-a971-80d5-9eab-c054b0be8afd"/><p id="12cc5223-a971-80da-8519-ccf3f3587ab9" class="">Animations bring a polished, dynamic feel to web design. CSS animations like transitions, keyframes, and transforms allow for interactivity without JavaScript. By combining timing functions, animation delays, and directions, designers can achieve effects that range from simple hovers to complex sequences, enhancing user engagement across responsive designs.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

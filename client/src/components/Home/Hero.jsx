@@ -29,7 +29,7 @@ const Hero = () => {
         <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition" onClick={registerRoute}>
           Get Started
         </button>
-        <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition m-5" onClick={aboutRoute}>
+        <button className="bg-[#FFD700] text-[#121212] px-6 py-3 rounded-lg hover:opacity-90 transition ml-5" onClick={aboutRoute}>
           About Us
         </button>
       </div>

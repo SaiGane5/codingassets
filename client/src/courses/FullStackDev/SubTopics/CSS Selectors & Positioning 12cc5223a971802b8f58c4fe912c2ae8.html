@@ -1,0 +1,778 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CSS Selectors &amp; Positioning</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="12cc5223-a971-802b-8f58-c4fe912c2ae8" class="page sans"><header><h1 class="page-title">CSS Selectors &amp; Positioning</h1><p class="page-description"></p></header><div class="page-body"><h3 id="12cc5223-a971-801d-90d2-fdd286cb249c" class="">CSS Selectors</h3><p id="12cc5223-a971-808a-a538-d6f1e4a4ba2e" class="">CSS selectors allow you to target HTML elements for styling based on various attributes, relationships, and properties. Mastery of selectors provides fine control over styling, making it possible to apply styles precisely where they’re needed.</p><hr id="12cc5223-a971-8024-9bc8-e9181a14b471"/><h3 id="12cc5223-a971-802e-ad21-d84fc6fd579f" class="">1. <strong>Basic Selectors</strong></h3><p id="12cc5223-a971-8069-844c-d6aac0e058fc" class="">These target elements by type, class, or ID.</p><ul id="12cc5223-a971-80b1-98e1-d318458f3c2f" class="bulleted-list"><li style="list-style-type:disc"><strong>Element Selector</strong>: Selects all elements of a specified type.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80f4-b03d-e2fd820c1ce2" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">p {
+    color: blue;
+}
+</code></pre></li></ul><ul id="12cc5223-a971-8012-a028-e8b1b602f1b4" class="bulleted-list"><li style="list-style-type:disc"><strong>Class Selector</strong>: Targets elements with a specific class name, using the dot (<code>.</code>) syntax.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80ca-add9-e2b5164d765a" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.example {
+    font-size: 1.2rem;
+}
+</code></pre></li></ul><ul id="12cc5223-a971-80b4-a10e-e0851aefa1a9" class="bulleted-list"><li style="list-style-type:disc"><strong>ID Selector</strong>: Targets a unique element with an ID, using the hash (<code>#</code>) syntax.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80c3-8ed1-f1e42177b2f7" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">#header {
+    background-color: #f4f4f4;
+}
+</code></pre></li></ul><p id="12cc5223-a971-8088-bffa-e96ac273502c" class=""><strong>Professional Usage</strong>: Used in nearly every CSS project (100%) for basic styling needs. Class selectors are generally preferred over ID selectors for reusability.</p><hr id="12cc5223-a971-8023-96ba-feac41743dca"/><h3 id="12cc5223-a971-80ec-a657-efe5a1235100" class="">2. <strong>Attribute Selectors</strong></h3><p id="12cc5223-a971-8050-b748-c3e2544a68ed" class="">Target elements based on attributes like <code>href</code>, <code>type</code>, or custom attributes.</p><ul id="12cc5223-a971-80a5-9534-eb05440c9c8f" class="bulleted-list"><li style="list-style-type:disc"><strong>Syntax</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80c5-86e8-d74935d0af62" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">/* Selects all input elements of type &#x27;text&#x27; */
+input[type=&quot;text&quot;] {
+    border: 1px solid #ccc;
+}
+
+/* Selects all anchor tags with a specific href */
+a[href^=&quot;https&quot;] {
+    color: green;
+}
+</code></pre></li></ul><p id="12cc5223-a971-803b-aa0c-d6add2acf7f6" class=""><strong>Professional Usage</strong>: Attribute selectors are frequently used (about 50%), especially for styling forms or links based on attribute values.</p><hr id="12cc5223-a971-80cf-80a8-f95543f49ff0"/><h3 id="12cc5223-a971-80d6-a765-e35d49f305c3" class="">3. <strong>Pseudo-Classes</strong></h3><p id="12cc5223-a971-8044-a004-c5fc95c18ff5" class="">Pseudo-classes select elements in specific states, like <code>:hover</code> for hover states or <code>:first-child</code> for the first element in a container.</p><ul id="12cc5223-a971-80ce-8b0a-f33adaf840d9" class="bulleted-list"><li style="list-style-type:disc"><strong>Common Pseudo-Classes</strong>:<ul id="12cc5223-a971-8080-97af-d84579e63f78" class="bulleted-list"><li style="list-style-type:circle"><code>:hover</code>: Styles an element when the user hovers over it.</li></ul><ul id="12cc5223-a971-8072-8585-de9ef098d740" class="bulleted-list"><li style="list-style-type:circle"><code>:first-child</code>: Styles the first child within a parent element.</li></ul><ul id="12cc5223-a971-808b-b669-d5f5ea1c63f9" class="bulleted-list"><li style="list-style-type:circle"><code>:nth-child(n)</code>: Styles elements based on their position in a list.</li></ul></li></ul><ul id="12cc5223-a971-807d-bffc-d6577527f569" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80f4-9d9f-d5105533e7d5" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">/* Change color when hovering over links */
+a:hover {
+    color: red;
+}
+
+/* Select every second list item */
+li:nth-child(2n) {
+    background-color: #f0f0f0;
+}
+</code></pre></li></ul><p id="12cc5223-a971-8089-9969-e610ef8e9d38" class=""><strong>Professional Usage</strong>: Pseudo-classes are widely used (about 80%), especially for hover effects and targeting specific elements within lists or grids.</p><hr id="12cc5223-a971-80f2-98e8-e1b581818ecd"/><h3 id="12cc5223-a971-80b9-b477-dc66f38d3667" class="">4. <strong>Pseudo-Elements</strong></h3><p id="12cc5223-a971-8093-8f99-d62497fbe725" class="">Pseudo-elements style specific parts of an element, such as the first line or first letter of text.</p><ul id="12cc5223-a971-80ca-a53f-e47df273b709" class="bulleted-list"><li style="list-style-type:disc"><strong>Common Pseudo-Elements</strong>:<ul id="12cc5223-a971-80bb-b221-caf78e4c31dd" class="bulleted-list"><li style="list-style-type:circle"><code>::before</code>: Inserts content before the element&#x27;s content.</li></ul><ul id="12cc5223-a971-804a-a9eb-daee6225e8b2" class="bulleted-list"><li style="list-style-type:circle"><code>::after</code>: Inserts content after the element&#x27;s content.</li></ul><ul id="12cc5223-a971-8043-b66c-c513df0d804c" class="bulleted-list"><li style="list-style-type:circle"><code>::first-line</code>: Styles only the first line of text.</li></ul></li></ul><ul id="12cc5223-a971-8006-bee1-db7783e85799" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-808a-812a-e88b5fa81db6" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.highlight::before {
+    content: &quot;★ &quot;;
+    color: gold;
+}
+</code></pre></li></ul><p id="12cc5223-a971-80bc-beaa-c1b16b91b8bc" class=""><strong>Professional Usage</strong>: Commonly used (about 60%) in decorative elements like icons or visual effects, especially with <code>::before</code> and <code>::after</code> to add extra visual details.</p><hr id="12cc5223-a971-8055-9c47-d215ece0abbd"/><h3 id="12cc5223-a971-8082-8ca4-f1f3986a779b" class="">5. <strong>Combinator Selectors</strong></h3><p id="12cc5223-a971-8057-af0f-e4f58cbba768" class="">Combinators define relationships between elements to create more specific selections.</p><ul id="12cc5223-a971-80df-b2d4-f3c8c193a31b" class="bulleted-list"><li style="list-style-type:disc"><strong>Types</strong>:<ul id="12cc5223-a971-8037-9038-c7c44d333b02" class="bulleted-list"><li style="list-style-type:circle"><strong>Descendant Selector</strong> (<code> </code>): Targets nested elements.</li></ul><ul id="12cc5223-a971-809b-8740-c89516765d53" class="bulleted-list"><li style="list-style-type:circle"><strong>Child Selector</strong> (<code>&gt;</code>): Targets direct children only.</li></ul><ul id="12cc5223-a971-80bc-91b0-c17f51d5d06d" class="bulleted-list"><li style="list-style-type:circle"><strong>Adjacent Sibling Selector</strong> (<code>+</code>): Selects the next sibling.</li></ul><ul id="12cc5223-a971-8064-b2a0-cf6e6afc304f" class="bulleted-list"><li style="list-style-type:circle"><strong>General Sibling Selector</strong> (<code>~</code>): Selects all following siblings.</li></ul></li></ul><ul id="12cc5223-a971-80ba-8750-fe8b07849db7" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8010-a322-d96f0d09bb68" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">/* Select all paragraphs inside .container */
+.container p {
+    color: blue;
+}
+
+/* Selects only the first paragraph directly inside .content */
+.content &gt; p {
+    font-weight: bold;
+}
+</code></pre></li></ul><p id="12cc5223-a971-808a-b6b8-fda82fefba1b" class=""><strong>Professional Usage</strong>: Combinators are used in nearly all CSS stylesheets (95%), enabling selective styling for nested elements, especially in complex layouts.</p><hr id="12cc5223-a971-8047-94df-d44c829da6a6"/><h3 id="12cc5223-a971-8002-b2bc-cc4d7817186e" class="">6. <strong>Universal Selector</strong></h3><p id="12cc5223-a971-80c9-94a8-d19f4957dfe5" class="">The universal selector (<code>*</code>) targets all elements and is often used to reset or normalize styles.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80a6-89c6-d7d693ca75da" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">* {
+    box-sizing: border-box;
+}
+</code></pre><p id="12cc5223-a971-80a1-bd38-c0a4f3ecc145" class=""><strong>Professional Usage</strong>: Frequently used (about 70%) in CSS resets or to apply global styles like <code>box-sizing</code>.</p><hr id="12cc5223-a971-80b3-9469-eb49346ae09e"/><hr id="12cc5223-a971-80d0-9647-e803d432f213"/><h3 id="12cc5223-a971-8031-8086-e1234143caee" class="">CSS Positioning</h3><p id="12cc5223-a971-80f6-9b9b-c3215f811b05" class="">CSS positioning defines how elements are placed in relation to their containers and other elements. This is essential for layout design, enabling fixed headers, sticky elements, and overlapping content.</p><hr id="12cc5223-a971-8075-8eaa-efd9ad8ccea2"/><h3 id="12cc5223-a971-8087-bbc5-d04a3398e78d" class="">1. <strong>Static Positioning (Default)</strong></h3><p id="12cc5223-a971-8070-a925-db4039583d67" class="">The default position of elements. They appear in the normal document flow.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-805a-9bae-c54881757539" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">div {
+    position: static;
+}
+</code></pre><p id="12cc5223-a971-80bd-a6bd-e0c40dd9b59d" class=""><strong>Professional Usage</strong>: Static positioning is often the default but is rarely specified directly, as elements are static by default.</p><hr id="12cc5223-a971-8062-83c8-d23ae59f3701"/><h3 id="12cc5223-a971-80db-b3b1-e2339b7d70cc" class="">2. <strong>Relative Positioning</strong></h3><p id="12cc5223-a971-802c-95f0-c44b6a67de9a" class="">The element is positioned relative to its original location. Setting <code>top</code>, <code>right</code>, <code>bottom</code>, or <code>left</code> shifts it from its natural position.</p><ul id="12cc5223-a971-80d9-a0b4-f03942efb8c2" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-807e-b610-dfadc94f7525" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.box {
+    position: relative;
+    top: 10px;
+    left: 5px;
+}
+</code></pre></li></ul><p id="12cc5223-a971-8031-95dd-c5c6fb3a3de5" class=""><strong>Professional Usage</strong>: Used in about 60% of layouts, often for minor adjustments, or as a base for positioning absolute elements within a container.</p><hr id="12cc5223-a971-805e-831a-faf18ced5d48"/><h3 id="12cc5223-a971-808a-a431-c90b52c8101d" class="">3. <strong>Absolute Positioning</strong></h3><p id="12cc5223-a971-80be-8289-fc5c98144cac" class="">The element is removed from the document flow and positioned relative to the nearest positioned ancestor (non-static) or the document if no ancestor is positioned.</p><ul id="12cc5223-a971-80dd-8176-dd4b67521a59" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8002-8a56-c1d89c0dcfbb" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.tooltip {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+</code></pre></li></ul><p id="12cc5223-a971-8015-9f33-fccee7450ba5" class=""><strong>Professional Usage</strong>: Used in about 70% of designs, absolute positioning is common for pop-ups, tooltips, and specific layered elements. It’s especially useful when combined with <code>relative</code> parent elements.</p><hr id="12cc5223-a971-8062-90e6-e9be52975672"/><h3 id="12cc5223-a971-80fd-a4be-e3d706a7fcb1" class="">4. <strong>Fixed Positioning</strong></h3><p id="12cc5223-a971-80a4-9a4e-e1771a70134d" class="">The element is removed from the document flow and positioned relative to the viewport, so it remains in place even when scrolling.</p><ul id="12cc5223-a971-8010-b453-ca573583cd0c" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80f8-b7a9-f4ddf237ceb9" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+</code></pre></li></ul><p id="12cc5223-a971-80d9-8a5d-dfff31de7496" class=""><strong>Professional Usage</strong>: Fixed positioning is popular (used in about 40%) for navigation bars, headers, and back-to-top buttons, keeping elements accessible as the user scrolls.</p><hr id="12cc5223-a971-807d-85c9-e16ad6ae3cc2"/><h3 id="12cc5223-a971-809f-a774-f1f2124e1ce9" class="">5. <strong>Sticky Positioning</strong></h3><p id="12cc5223-a971-8093-bfd5-ec6db00529bd" class="">An element behaves like <code>relative</code> until it reaches a specified scroll position, then it sticks in place like <code>fixed</code>.</p><ul id="12cc5223-a971-8050-81b7-e0d72a105c26" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8018-adbe-da4d983458e7" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.sidebar {
+    position: sticky;
+    top: 0;
+}
+</code></pre></li></ul><p id="12cc5223-a971-806e-b4ff-eb4ccf2051a7" class=""><strong>Professional Usage</strong>: Sticky positioning is increasingly popular (about 30%), especially for sidebar menus and table headers, as it enhances user experience by keeping important information accessible while scrolling.</p><hr id="12cc5223-a971-8074-a37d-fd6eaef258a6"/><h3 id="12cc5223-a971-8092-96f7-d689a70935fd" class="">6. <strong>Z-Index</strong></h3><p id="12cc5223-a971-8024-b730-ca33c95eabae" class="">The <code>z-index</code> property controls the stacking order of positioned elements, with higher values displayed in front of lower ones.</p><ul id="12cc5223-a971-8038-b010-c63d51ef037b" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8069-8ff5-d01109475884" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">.modal {
+    position: absolute;
+    z-index: 10;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 5;
+}
+</code></pre></li></ul><p id="12cc5223-a971-8028-af80-c481ef898cf2" class=""><strong>Professional Usage</strong>: <code>z-index</code> is essential (used in about 90% of complex designs) to manage layering for modals, dropdowns, and overlapping elements.</p><hr id="12cc5223-a971-8027-9412-cdde4f4f9509"/><h3 id="12cc5223-a971-801a-8e14-e453f3299961" class="">Practical Example: Fixed Header with Sticky Navigation</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8093-b3fe-fb1a472e267b" class="code"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">/* Fixed header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background: #333;
+    color: white;
+}
+
+/* Sticky sidebar */
+.sidebar {
+    position: sticky;
+    top: 50px;
+    width: 200px;
+}
+
+.content {
+    margin-left: 220px; /* Space for the sidebar */
+}
+</code></pre><p id="12cc5223-a971-8071-84da-ff468b9de978" class="">In this example, the <code>.header</code> stays fixed at the top of the page, while the <code>.sidebar</code> becomes sticky after scrolling past a certain point. This combination is ideal for pages that require easy navigation and constant access to key information.</p><hr id="12cc5223-a971-8036-8b00-eb3fa144c314"/><p id="12cc5223-a971-8015-8420-f9ff73e8ee5c" class="">CSS selectors and positioning are foundational to building structured, dynamic web layouts. Selectors allow you to target and style elements precisely, while positioning provides control over how elements appear and interact with other content. Together, they form the backbone of responsive and visually engaging designs.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

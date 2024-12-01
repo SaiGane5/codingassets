@@ -1,0 +1,809 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Express Notes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="12cc5223-a971-8070-8eb9-e5e45c539b40" class="page sans"><header><h1 class="page-title">Express Notes</h1><p class="page-description"></p></header><div class="page-body"><p id="12cc5223-a971-802d-b2c4-e8e204e1133b" class="">Let&#x27;s explore foundational concepts of <strong>Express.js</strong> through a simple <strong>Task Management Application</strong>. This application will demonstrate the key features of Express, including routing, middleware, error handling, template engines, static files, and database integration.</p><hr id="12cc5223-a971-809e-8314-dfbbc51d3fbf"/><h3 id="12cc5223-a971-8005-9174-f9a6fbfaaaf5" class="">1. <strong>Routing</strong></h3><p id="12cc5223-a971-807c-b18d-cdd59a1185bb" class=""><strong>Routing</strong> in Express allows you to define various endpoints that the application can respond to. Each route can have one or more handler functions.</p><p id="12cc5223-a971-809f-b7f6-ef33f91a5eb6" class=""><strong>How It Works</strong>:</p><ul id="12cc5223-a971-80fd-a6d0-eb4c4d1a05b3" class="bulleted-list"><li style="list-style-type:disc">Use <code>app.get()</code>, <code>app.post()</code>, etc., to define routes.</li></ul><ul id="12cc5223-a971-801f-8bc0-d99db090a38f" class="bulleted-list"><li style="list-style-type:disc">Each route can have a callback function that handles the request and response.</li></ul><p id="12cc5223-a971-808c-8261-ed13a4862b0a" class=""><strong>Example</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80ff-b29c-db8e9ae65000" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const express = require(&#x27;express&#x27;);
+const app = express();
+
+app.get(&#x27;/tasks&#x27;, (req, res) =&gt; {
+    res.send(&#x27;List of tasks&#x27;);
+});
+
+app.post(&#x27;/tasks&#x27;, (req, res) =&gt; {
+    res.send(&#x27;Task created&#x27;);
+});
+
+app.listen(3000, () =&gt; {
+    console.log(&#x27;Server running on &lt;http://localhost:3000&gt;&#x27;);
+});
+</code></pre><hr id="12cc5223-a971-8009-8e5c-fc97ac8ef0f9"/><h3 id="12cc5223-a971-8079-a95c-d786a452ce96" class="">2. <strong>Middleware</strong></h3><p id="12cc5223-a971-809e-b11a-c8e2577c5e98" class=""><strong>Middleware</strong> are functions that execute during the request-response cycle. They can perform operations such as logging, authentication, parsing request bodies, etc.</p><p id="12cc5223-a971-80b5-a9ea-e6b5fae7dd78" class=""><strong>How It Works</strong>:</p><ul id="12cc5223-a971-8059-b757-cb672ea9cd00" class="bulleted-list"><li style="list-style-type:disc">Use <code>app.use()</code> to apply middleware.</li></ul><ul id="12cc5223-a971-8034-962a-c56b5bca66b2" class="bulleted-list"><li style="list-style-type:disc">Middleware functions receive <code>req</code>, <code>res</code>, and <code>next</code> parameters.</li></ul><p id="12cc5223-a971-800b-9b35-c41a71fd15af" class=""><strong>Example</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-801e-a16c-d125b1b7c920" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const logger = (req, res, next) =&gt; {
+    console.log(`${req.method} request to ${req.url}`);
+    next(); // Call the next middleware or route handler
+};
+
+app.use(logger);
+
+app.get(&#x27;/tasks&#x27;, (req, res) =&gt; {
+    res.send(&#x27;List of tasks&#x27;);
+});
+</code></pre><p id="12cc5223-a971-809f-91ea-db1b596489b1" class=""><strong>Usage in the Task Management Application</strong>: Middleware can be used for logging, error handling, or parsing JSON bodies.</p><hr id="12cc5223-a971-80a7-ba04-e10432c2227c"/><h3 id="12cc5223-a971-8044-9807-d739aee7f886" class="">3. <strong>Error Handling</strong></h3><p id="12cc5223-a971-802b-8789-cc24affee67e" class="">Error handling middleware can be defined to catch errors that occur in your application.</p><p id="12cc5223-a971-8014-823d-f248a16f794b" class=""><strong>How It Works</strong>:</p><ul id="12cc5223-a971-80e9-be59-fe9d6ccfdc4e" class="bulleted-list"><li style="list-style-type:disc">Define a middleware function with four parameters: <code>err</code>, <code>req</code>, <code>res</code>, <code>next</code>.</li></ul><ul id="12cc5223-a971-80ed-8859-e83900d5391e" class="bulleted-list"><li style="list-style-type:disc">Use <code>next(err)</code> to pass errors to the error handling middleware.</li></ul><p id="12cc5223-a971-8080-9720-e9b5c0b69df0" class=""><strong>Example</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8049-be4e-d7a5af54a878" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send(&#x27;Something broke!&#x27;);
+});
+</code></pre><p id="12cc5223-a971-807c-8170-c68de1a086aa" class=""><strong>Usage in the Task Management Application</strong>: You can use error handling to manage unexpected errors gracefully.</p><hr id="12cc5223-a971-80f6-84ee-e9dd76c43cce"/><h3 id="12cc5223-a971-8027-9273-e4d32bcf1ca0" class="">4. <strong>Template Engines</strong></h3><p id="12cc5223-a971-80c8-810e-eec6da4e2861" class=""><strong>Template Engines</strong> allow you to render dynamic HTML pages. Express supports various template engines like EJS, Pug, and Handlebars.</p><p id="12cc5223-a971-80fc-9057-dda79c4c13d3" class=""><strong>How It Works</strong>:</p><ul id="12cc5223-a971-8083-8cb1-c8b859c3494f" class="bulleted-list"><li style="list-style-type:disc">Set the view engine using <code>app.set(&#x27;view engine&#x27;, &#x27;ejs&#x27;)</code>.</li></ul><ul id="12cc5223-a971-802d-8945-c97b733f1a8c" class="bulleted-list"><li style="list-style-type:disc">Render templates with <code>res.render()</code>.</li></ul><p id="12cc5223-a971-80b5-afe7-cc82dc3e11b0" class=""><strong>Example</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-803d-b27a-f733a2ebd7b9" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.set(&#x27;view engine&#x27;, &#x27;ejs&#x27;);
+
+app.get(&#x27;/tasks&#x27;, (req, res) =&gt; {
+    const tasks = [&#x27;Task 1&#x27;, &#x27;Task 2&#x27;, &#x27;Task 3&#x27;];
+    res.render(&#x27;tasks&#x27;, { tasks });
+});
+</code></pre><p id="12cc5223-a971-80b1-aa8f-d1d44e6e0497" class=""><strong>Usage in the Task Management Application</strong>: You can use a template engine to render a list of tasks.</p><hr id="12cc5223-a971-80d6-a351-c870ca3c77c7"/><h3 id="12cc5223-a971-801a-95d3-c5c21f588e1c" class="">5. <strong>Static Files</strong></h3><p id="12cc5223-a971-8010-bb71-d9ff0d415d62" class="">Express can serve <strong>static files</strong> (like images, CSS, and JavaScript) using the built-in <code>express.static()</code> middleware.</p><p id="12cc5223-a971-8036-a0e0-c6c5814b23bc" class=""><strong>How It Works</strong>:</p><ul id="12cc5223-a971-8035-8736-f753fc7975d3" class="bulleted-list"><li style="list-style-type:disc">Use <code>app.use(express.static(&#x27;public&#x27;))</code> to serve static files from a directory.</li></ul><p id="12cc5223-a971-8033-9d6a-ecca82adb619" class=""><strong>Example</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8082-b053-fc71b8ea38c3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use(express.static(&#x27;public&#x27;));
+</code></pre><p id="12cc5223-a971-800b-9a2d-e589d737b62a" class=""><strong>Usage in the Task Management Application</strong>: You can place CSS files in the <code>public</code> folder and link them in your HTML templates.</p><hr id="12cc5223-a971-8088-bb0a-c1c96495dac7"/><h3 id="12cc5223-a971-80eb-837f-c119a5e8e060" class="">6. <strong>Database Integration</strong></h3><p id="12cc5223-a971-8033-b8d8-f468d8f57ab2" class="">Integrating a database allows you to persist data. Popular choices include MongoDB, MySQL, and PostgreSQL. For this example, we’ll use <strong>MongoDB</strong> with <strong>Mongoose</strong> as an ORM.</p><p id="12cc5223-a971-8008-bafb-f5bd76198215" class=""><strong>How It Works</strong>:</p><ul id="12cc5223-a971-8089-ae58-e8813f6811fd" class="bulleted-list"><li style="list-style-type:disc">Install Mongoose: <code>npm install mongoose</code>.</li></ul><ul id="12cc5223-a971-80e7-a816-ed68e3a9fb99" class="bulleted-list"><li style="list-style-type:disc">Connect to the database and define models.</li></ul><p id="12cc5223-a971-80d5-9379-f8d877403be0" class=""><strong>Example</strong>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80d4-b730-e2f794dae98d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const mongoose = require(&#x27;mongoose&#x27;);
+mongoose.connect(&#x27;mongodb://localhost:27017/taskdb&#x27;, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const taskSchema = new mongoose.Schema({
+    name: String,
+    completed: Boolean
+});
+
+const Task = mongoose.model(&#x27;Task&#x27;, taskSchema);
+
+// Create a new task
+app.post(&#x27;/tasks&#x27;, async (req, res) =&gt; {
+    const newTask = new Task({ name: &#x27;New Task&#x27;, completed: false });
+    await newTask.save();
+    res.send(&#x27;Task created&#x27;);
+});
+</code></pre><hr id="12cc5223-a971-802b-ad44-f8cedfe6cf8c"/><h3 id="12cc5223-a971-80fb-8576-e8d640480fa7" class="">Project: Task Management Application</h3><h3 id="12cc5223-a971-80de-bc14-ddadc69b8cb9" class="">Step 1: Setup the Project</h3><ol type="1" id="12cc5223-a971-809b-bc33-d62ae986ca52" class="numbered-list" start="1"><li>Create a new directory for your project.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80f1-b68e-c6523a8b4f3e" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">mkdir task-management-app
+cd task-management-app
+npm init -y
+npm install express ejs mongoose
+</code></pre></li></ol><h3 id="12cc5223-a971-80a8-a8dd-c4835ed1ebb2" class="">Step 2: Create the Application</h3><h3 id="12cc5223-a971-8007-ab18-cd9fe2c81aed" class=""><code><strong>app.js</strong></code>: Main application logic</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80cf-b3f1-c8fbf2b9f5c3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const express = require(&#x27;express&#x27;);
+const mongoose = require(&#x27;mongoose&#x27;);
+const app = express();
+
+// Connect to MongoDB
+mongoose.connect(&#x27;mongodb://localhost:27017/taskdb&#x27;, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Task Schema
+const taskSchema = new mongoose.Schema({
+    name: String,
+    completed: Boolean
+});
+const Task = mongoose.model(&#x27;Task&#x27;, taskSchema);
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(&#x27;public&#x27;));
+
+// Set view engine
+app.set(&#x27;view engine&#x27;, &#x27;ejs&#x27;);
+
+// Logging Middleware
+app.use((req, res, next) =&gt; {
+    console.log(`${req.method} request to ${req.url}`);
+    next();
+});
+
+// Routes
+app.get(&#x27;/tasks&#x27;, async (req, res) =&gt; {
+    const tasks = await Task.find();
+    res.render(&#x27;tasks&#x27;, { tasks });
+});
+
+app.post(&#x27;/tasks&#x27;, async (req, res) =&gt; {
+    const newTask = new Task({ name: req.body.name, completed: false });
+    await newTask.save();
+    res.redirect(&#x27;/tasks&#x27;);
+});
+
+// Error Handling
+app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send(&#x27;Something broke!&#x27;);
+});
+
+// Start server
+app.listen(3000, () =&gt; {
+    console.log(&#x27;Server running on &lt;http://localhost:3000&gt;&#x27;);
+});
+</code></pre><h3 id="12cc5223-a971-80ce-8b73-cd1b9c241ee7" class=""><code><strong>views/tasks.ejs</strong></code>: Create a directory named <code>views</code> and a file <code>tasks.ejs</code> for rendering the tasks</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8081-8b36-ef77c90771c9" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Task List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Task List&lt;/h1&gt;
+    &lt;form action=&quot;/tasks&quot; method=&quot;POST&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot; placeholder=&quot;New Task&quot; required&gt;
+        &lt;button type=&quot;submit&quot;&gt;Add Task&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;ul&gt;
+        &lt;% tasks.forEach(task =&gt; { %&gt;
+            &lt;li&gt;&lt;%= task.name %&gt;&lt;/li&gt;
+        &lt;% }); %&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="12cc5223-a971-80ca-a462-fefa99e710b9" class="">Step 3: Serve Static Files</h3><ol type="1" id="12cc5223-a971-8017-a33c-f3fb0d4b4797" class="numbered-list" start="1"><li>Create a directory named <code>public</code> for your static files (e.g., CSS).</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8085-89f6-c561966cd7ed" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">mkdir public</code></pre><p id="12cc5223-a971-8032-800e-d8d84f6d82a1" class="">You can place your CSS files in this directory and reference them in your HTML.</p><h3 id="12cc5223-a971-800d-87f1-e1159d0b62c0" class="">Step 4: Run the Application</h3><ol type="1" id="12cc5223-a971-8041-a58e-f5ae77055109" class="numbered-list" start="1"><li>Run the application in your terminal:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80e9-9aa1-db3218401b51" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">node app.js</code></pre></li></ol><h3 id="12cc5223-a971-80f2-bd7f-f266ba45bd2c" class="">Result</h3><p id="12cc5223-a971-80ec-bd2d-f6c31779985c" class="">Your Task Management Application should be up and running! You can add tasks, view them, and see how Express handles routing, middleware, error handling, template rendering, static files, and database integration.</p><p id="12cc5223-a971-806a-b471-ea3036e407fd" class="">Feel free to extend this application further by adding features like task completion, deletion, or editing</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -3,27 +3,24 @@ import { ExternalLink } from 'lucide-react';
 
 const ToolCards = ({ imageSrc, heading, description, linkHref }) => {
   return (
-    <div className="flex flex-row-reverse bg-[#121212] rounded-3xl w-fit m-2.5">
+    <div className="flex flex-col md:flex-row-reverse bg-[#121212] rounded-3xl w-full md:w-auto m-4">
       <div className="card-image">
         <img 
           src={imageSrc} 
           alt={heading} 
-          className="w-52 h-72 rounded-l-none rounded-3xl object-cover"
+          className="w-full md:w-52 h-52 md:h-72 rounded-t-3xl md:rounded-l-none md:rounded-3xl object-cover"
         />
       </div>
-      <div className="card-content flex flex-col justify-center p-2.5 w-64">
+      <div className="card-content flex flex-col justify-center p-4 w-full md:w-64">
         <a 
-            href={linkHref} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:text-[#D4AF37]"
-          >
-            <h2 className="text-[#FFD700] text-xl font-bold mb-0 pl-5 pt-3">{heading}</h2>
-          </a>
-        <p className="text-white p-5">{description}</p>
-        <div className="flex justify-end p-2.5">
-          
-        </div>
+          href={linkHref} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-white hover:text-[#D4AF37]"
+        >
+          <h2 className="text-[#FFD700] text-lg md:text-xl font-bold mb-2">{heading}</h2>
+        </a>
+        <p className="text-white text-sm md:text-base mb-4">{description}</p>
       </div>
     </div>
   );
@@ -54,12 +51,12 @@ const ToolSection = () => {
   return (
     <section 
       id="tools" 
-      className="bg-[#1d1b1b] rounded-3xl m-12 p-2.5 flex flex-col"
+      className="bg-[#1d1b1b] rounded-3xl m-4 md:m-12 p-4 flex flex-col"
     >
-      <h2 className="text-3xl text-center py-5 text-[#D4AF37] font-bold">
+      <h2 className="text-2xl md:text-3xl text-center py-5 text-[#D4AF37] font-bold">
         Our Tools
       </h2>
-      <div className="flex flex-wrap justify-evenly">
+      <div className="flex flex-wrap justify-center gap-6">
         {toolsData.map((tool, index) => (
           <ToolCards key={index} {...tool} />
         ))}
