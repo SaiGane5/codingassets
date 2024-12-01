@@ -47,7 +47,7 @@ const TutorialSection = () => {
       imageSrc: "https://i.pinimg.com/474x/e4/19/da/e419da4e7bc891cb82c4b8c1695286b7.jpg",
       heading: "DSA",
       description: "Pathway to DSA in C++",
-      linkHref: "https://dsa.codingassets.in/"
+      linkHref: "/courses/DSA_Rev/DSA_Rev.html"
     }
   ];
 
