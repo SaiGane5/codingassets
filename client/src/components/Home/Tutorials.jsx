@@ -41,7 +41,7 @@ const TutorialSection = () => {
       imageSrc: "https://plus.unsplash.com/premium_photo-1690303193653-0418179e5512?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d2ViJTIwZGV2fGVufDB8fDB8fHww",
       heading: "Web Development",
       description: "Learn MERN",
-      linkHref: "https://daily-dashboard-saig.netlify.app/"
+      linkHref: "http://localhost:3000/courses/FullStackDev/Full Stack Development.html"
     },
     {
       imageSrc: "https://i.pinimg.com/474x/e4/19/da/e419da4e7bc891cb82c4b8c1695286b7.jpg",

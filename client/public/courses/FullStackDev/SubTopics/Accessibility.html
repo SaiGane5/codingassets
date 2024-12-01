@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Forms &amp; Validation</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Accessibility</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -11,6 +11,7 @@ html {
 
 html,
 body {
+	background-color: #000;
 	margin: 0;
 	padding: 0;
 }
@@ -41,6 +42,7 @@ a.visited {
 h1,
 h2,
 h3 {
+	color: gold;
 	letter-spacing: -0.01em;
 	line-height: 1.2;
 	font-weight: 600;
@@ -111,6 +113,7 @@ hr {
 }
 
 img {
+	border-radius: 30px;
 	max-width: 100%;
 }
 
@@ -198,6 +201,7 @@ th {
 
 ol,
 ul {
+	color: white;
 	margin: 0;
 	margin-block-start: 0.6em;
 	margin-block-end: 0.6em;
@@ -365,6 +369,7 @@ img.icon {
 }
 
 .link-to-page {
+	color: white;
 	margin: 1em 0;
 	padding: 0;
 	border: none;
@@ -401,7 +406,7 @@ p {
 
 .code,
 code {
-	background: rgba(135, 131, 120, 0.15);
+	background: rgba(0, 0, 0, 0.15);
 	border-radius: 3px;
 	padding: 0.2em 0.4em;
 	border-radius: 3px;
@@ -681,9 +686,8 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="12cc5223-a971-80fc-9b30-cb801c76919c" class="page sans"><header><h1 class="page-title"><strong>Forms &amp; Validation</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="12cc5223-a971-8006-88cd-f6d4112d1a6d" class=""><strong>Goal</strong>: Forms collect user input, and HTML5 validation helps ensure the data is in the correct format before submission.</p><h3 id="12cc5223-a971-806f-96e5-e6182d75d5ac" class="">Step-by-Step Explanation</h3><ol type="1" id="12cc5223-a971-80f3-bc88-cebfbcd09ab5" class="numbered-list" start="1"><li><strong>Form Structure</strong>: Define the form using the <code>&lt;form&gt;</code> tag, which collects and organizes input fields.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8037-8ee2-fec9ffd3c7e6" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;form action=&quot;/submit-form&quot; method=&quot;POST&quot;&gt;
-    ...
-&lt;/form&gt;</code></pre><ul id="12cc5223-a971-8044-a7c9-f10a46539c36" class="bulleted-list"><li style="list-style-type:disc"><code>action</code> specifies the URL where the form data will be sent.</li></ul><ul id="12cc5223-a971-805d-b48c-d5f7c20bade3" class="bulleted-list"><li style="list-style-type:disc"><code>method=&quot;POST&quot;</code> indicates that data will be sent securely to the server.</li></ul></li></ol><ol type="1" id="12cc5223-a971-801d-8ee2-e7ecb67f9151" class="numbered-list" start="2"><li><strong>Text Input with Validation</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80b0-a3e1-df373cd54f02" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
-&lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required</code></pre><ul id="12cc5223-a971-80d3-8e3c-ed26c5047d90" class="bulleted-list"><li style="list-style-type:disc"><code>type=&quot;text&quot;</code> defines this as a text input.</li></ul><ul id="12cc5223-a971-80f5-8327-c8f4a263dff5" class="bulleted-list"><li style="list-style-type:disc"><code>required</code> makes sure the field can’t be left blank.</li></ul></li></ol><ol type="1" id="12cc5223-a971-8031-8d32-e3bcf2679856" class="numbered-list" start="3"><li><strong>Email Input</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80c7-aa73-c91918db6b05" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
-&lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;</code></pre><ul id="12cc5223-a971-8060-aee3-df411338b55b" class="bulleted-list"><li style="list-style-type:disc"><code>type=&quot;email&quot;</code> ensures the input follows a valid email format, providing real-time feedback if it’s invalid.</li></ul></li></ol><ol type="1" id="12cc5223-a971-800f-8e96-e06e9b54db25" class="numbered-list" start="4"><li><strong>Number Input with Range</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-809f-bebd-c09444af10b2" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;label for=&quot;age&quot;&gt;Age:&lt;/label&gt;
-&lt;input type=&quot;number&quot; id=&quot;age&quot; name=&quot;age&quot; min=&quot;18&quot; max=&quot;100&quot; required&gt;</code></pre><ul id="12cc5223-a971-8016-a487-dace103b887a" class="bulleted-list"><li style="list-style-type:disc"><code>type=&quot;number&quot;</code> specifies a numeric input.</li></ul><ul id="12cc5223-a971-805d-aa79-e8a4b7f9aae9" class="bulleted-list"><li style="list-style-type:disc"><code>min=&quot;18&quot;</code> and <code>max=&quot;100&quot;</code> restrict the input range.</li></ul></li></ol><ol type="1" id="12cc5223-a971-805b-a500-e940b1466ed1" class="numbered-list" start="5"><li><strong>Submit Button</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-8059-90af-ffad48c736a9" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;</code></pre><ul id="12cc5223-a971-800f-a90b-e0456e1f11f9" class="bulleted-list"><li style="list-style-type:disc">The submit button sends the form data to the server when clicked.</li></ul></li></ol><p id="12cc5223-a971-80b7-9f63-eae93c5a7fa5" class="">This setup makes the form more user-friendly and secure by guiding users to provide the correct information.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+</style></head><body><article id="12cc5223-a971-80d2-84e5-c19bb72cb52f" class="page sans"><header><h1 class="page-title"><strong>Accessibility</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="12cc5223-a971-8052-8b1c-e78446052c7e" class=""><strong>Goal</strong>: Make web content accessible to all users, including those with disabilities, by using attributes that help assistive technologies interpret the content.</p><h3 id="12cc5223-a971-8053-9efa-fb6a6b006d2a" class="">Step-by-Step Explanation</h3><ol type="1" id="12cc5223-a971-801c-bae3-c48c4910403d" class="numbered-list" start="1"><li><strong>ARIA Labels</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-80a4-9801-e4c53b0a8128" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;button aria-label=&quot;Close Menu&quot;&gt;X&lt;/button</code></pre><ul id="12cc5223-a971-80b3-8fd4-e78a13028135" class="bulleted-list"><li style="list-style-type:disc"><code>aria-label=&quot;Close Menu&quot;</code> gives screen readers a descriptive label, improving usability for visually impaired users.</li></ul></li></ol><ol type="1" id="12cc5223-a971-803f-b52f-f698a83b2e89" class="numbered-list" start="2"><li><strong>Landmark Roles</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cc5223-a971-808a-83ba-c9332455be50" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;nav aria-label=&quot;Main Navigation&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;#home&quot; aria-label=&quot;Home Page&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre><ul id="12cc5223-a971-802d-aed3-ed958fd57f48" class="bulleted-list"><li style="list-style-type:disc"><code>aria-label=&quot;Main Navigation&quot;</code> tells screen readers this is the primary navigation, guiding users with limited visibility.</li></ul></li></ol><p id="12cc5223-a971-80f5-b120-d303f260f1a6" class="">Using these attributes makes the site more inclusive and functional for everyone.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
